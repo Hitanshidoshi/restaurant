@@ -77,6 +77,7 @@ dc.loadMenuCategories = function () {
     buildAndShowCategoriesHTML);
 };
 
+
 // Load the menu items view
 // 'categoryShort' is a short_name for a category
 dc.loadMenuItems = function (categoryShort) {
@@ -109,6 +110,37 @@ function buildAndShowCategoriesHTML (categories) {
     false);
 }
 
+
+// Using categories data and snippets html
+// build categories view HTML to be inserted into page
+function buildCategoriesViewHtml(categories,
+                                 categoriesTitleHtml,
+                                 categoryHtml) {
+
+  var finalHtml = categoriesTitleHtml;
+  finalHtml += "<section class='row'>";
+
+  // Loop over categories
+  for (var i = 0; i < categories.length; i++) {
+    // Insert category values
+    var html = categoryHtml;
+    var name = "" + categories[i].name;
+    var short_name = categories[i].short_name;
+    html =
+      insertProperty(html, "name", name);
+    html =
+      insertProperty(html,
+                     "short_name",
+                     short_name);
+    finalHtml += html;
+  }
+
+  finalHtml += "</section>";
+  return finalHtml;
+}
+
+
+
 // Builds HTML for the single category page based on the data
 // from the server
 function buildAndShowMenuItemsHTML (categoryMenuItems) {
@@ -130,6 +162,7 @@ function buildAndShowMenuItemsHTML (categoryMenuItems) {
     },
     false);
 }
+
 
 // Using category and menu items data and snippets html
 // build menu items view HTML to be inserted into page
@@ -199,34 +232,6 @@ function buildMenuItemsViewHtml(categoryMenuItems,
   return finalHtml;
 }
 
-
-// Using categories data and snippets html
-// build categories view HTML to be inserted into page
-function buildCategoriesViewHtml(categories,
-                                 categoriesTitleHtml,
-                                 categoryHtml) {
-
-  var finalHtml = categoriesTitleHtml;
-  finalHtml += "<section class='row'>";
-
-  // Loop over categories
-  for (var i = 0; i < categories.length; i++) {
-    // Insert category values
-    var html = categoryHtml;
-    var name = "" + categories[i].name;
-    var short_name = categories[i].short_name;
-    html =
-      insertProperty(html, "name", name);
-    html =
-      insertProperty(html,
-                     "short_name",
-                     short_name);
-    finalHtml += html;
-  }
-
-  finalHtml += "</section>";
-  return finalHtml;
-}
 
 // Appends price with '$' if price exists
 function insertItemPrice(html,
