@@ -24,7 +24,8 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 var dc = {};
 
 var homeHtml = "snippets/home-snippet.html";
-var allCategoriesUrl = "http://davids-restaurant.herokuapp.com/categories.json";
+var allCategoriesUrl =
+  "https://davids-restaurant.herokuapp.com/categories.json";
 var categoriesTitleHtml = "snippets/categories-title-snippet.html";
 var categoryHtml = "snippets/category-snippet.html";
 
@@ -49,6 +50,7 @@ var insertProperty = function (string, propName, propValue) {
     .replace(new RegExp(propToReplace, "g"), propValue);
   return string;
 }
+
 // On page load (before images or CSS)
 document.addEventListener("DOMContentLoaded", function (event) {
 
@@ -62,7 +64,6 @@ $ajaxUtils.sendGetRequest(
   },
   false);
 });
-
 
 // Load the menu categories view
 dc.loadMenuCategories = function () {
@@ -123,6 +124,7 @@ function buildCategoriesViewHtml(categories,
   finalHtml += "</section>";
   return finalHtml;
 }
+
 
 global.$dc = dc;
 
